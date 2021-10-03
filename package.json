@@ -2,14 +2,20 @@
   "name": "twitter2arena",
   "version": "1.0.0",
   "scripts": {
-    "dev": "blitz dev",
-    "build": "blitz build",
-    "start": "blitz start",
+    "dev": "blitz build && blitz dev",
+    "start": "blitz start --port ${PORT-3000}",
+    "build": "yarn migrate:deploy && blitz build",
+    "migrate:create": "blitz prisma migrate dev --create-only",
+    "migrate:dev": "blitz prisma migrate dev --preview-feature",
+    "migrate:deploy": "blitz prisma migrate deploy --preview-feature",
+    "start:production": "blitz start --production --port $PORT",
     "studio": "blitz prisma studio",
+    "prisma": "blitz prisma",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "test": "jest",
     "test:watch": "jest --watch",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "copy-wasm": "cp node_modules/replicache/out/*.wasm public/"
   },
   "prisma": {
     "schema": "db/schema.prisma"
