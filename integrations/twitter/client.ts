@@ -1,18 +1,13 @@
 import invariant from "tiny-invariant"
 import Twitter from "twitter-lite"
 import { Status } from "twitter-d"
-
-const CONSUMER_KEY = process.env.TWITTER_API_KEY
-const CONSUMER_SECRET = process.env.TWITTER_API_SECRET
-
-invariant(CONSUMER_KEY, "TWITTER_API_KEY is not set")
-invariant(CONSUMER_SECRET, "TWITTER_API_SECRET is not set")
+import { env } from "integrations/env"
 
 export const client = new Twitter({
   subdomain: "api", // "api" is the default (change for other subdomains)
   version: "1.1", // version "1.1" is the default (change for other subdomains)
-  consumer_key: CONSUMER_KEY, // from Twitter.
-  consumer_secret: CONSUMER_SECRET, // from Twitter.
+  consumer_key: env.twitter.consumer_key, // from Twitter.
+  consumer_secret: env.twitter.consumer_secret, // from Twitter.
 })
 
 export const getTweet = async (id: string) => {
