@@ -13,6 +13,7 @@ export interface FormProps<S extends z.ZodType<any, any>>
   schema?: S
   onSubmit: FinalFormProps<z.infer<S>>["onSubmit"]
   initialValues?: FinalFormProps<z.infer<S>>["initialValues"]
+  buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>
 }
 
 export function Form<S extends z.ZodType<any, any>>({
@@ -21,6 +22,7 @@ export function Form<S extends z.ZodType<any, any>>({
   schema,
   initialValues,
   onSubmit,
+  buttonProps,
   ...props
 }: FormProps<S>) {
   return (
@@ -29,27 +31,21 @@ export function Form<S extends z.ZodType<any, any>>({
       validate={validateZodSchema(schema)}
       onSubmit={onSubmit}
       render={({ handleSubmit, submitting, submitError }) => (
-        <form onSubmit={handleSubmit} className="form" {...props}>
+        <form onSubmit={handleSubmit} {...props}>
           {/* Form fields supplied as children are rendered here */}
           {children}
 
           {submitError && (
-            <div role="alert" style={{ color: "red" }}>
+            <div role="alert" style={{ color: "tomato" }}>
               {submitError}
             </div>
           )}
 
           {submitText && (
-            <button type="submit" disabled={submitting}>
+            <button {...buttonProps} type="submit" disabled={submitting}>
               {submitText}
             </button>
           )}
-
-          <style global jsx>{`
-            .form > * + * {
-              margin-top: 1rem;
-            }
-          `}</style>
         </form>
       )}
     />

@@ -11,8 +11,16 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <DocumentHead />
-        <body>
+        <body className="terminal">
           <Main />
+          <style jsx global>{`
+            body {
+              min-height: 100vh;
+            }
+            #__next {
+              height: 100vh;
+            }
+          `}</style>
           <BlitzScript />
         </body>
       </Html>
