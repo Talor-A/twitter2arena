@@ -69,4 +69,5 @@ model Token {
 
 enum TokenType {
   RESET_PASSWORD
+  ARENA
 }
