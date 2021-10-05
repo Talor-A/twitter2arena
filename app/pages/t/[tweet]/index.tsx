@@ -1,24 +1,18 @@
 import { Suspense } from "react"
-import { Head, useParam, BlitzPage } from "blitz"
+import { Head, useParam, BlitzPage, useQuery } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import { getTweet } from "integrations/twitter/client"
-import { useQuery } from "react-query"
 import invariant from "tiny-invariant"
+import getStatus from "app/queries/twitter/getStatus"
 
 export const TweetPage = () => {
-  const tId = useParam("tweet", "string")
+  const id = useParam("tweet", "string")!
 
-  invariant(tId, "tweet is required")
-  const { data } = useQuery(["tweet", tId], () => getTweet(tId), {
-    suspense: true,
-  })
-
-  const tweet = data!
+  const [tweet] = useQuery(getStatus, { id })
 
   return (
     <>
       <Head>
-        <title>Tweet {tId}</title>
+        <title>Tweet {id}</title>
       </Head>
 
       <div>

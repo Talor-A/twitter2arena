@@ -10,11 +10,19 @@ export const client = new Twitter({
   consumer_secret: env.twitter.consumer_secret, // from Twitter.
 })
 
-export const getTweet = async (id: string) => {
-  const tweet = await client.get<
-    Status & {
-      _headers: Headers
+export const getStatus = async (id: string) => {
+  try {
+    const tweet = await client.get<
+      Status & {
+        _headers: Headers
+      }
+    >("statuses/show", { id })
+    return tweet
+  } catch (e) {
+    if (e.message) throw e
+    if (e.errors) {
+      console.error(e)
+      throw e.errors[0]
     }
-  >("statuses/show", { id })
-  return tweet
+  }
 }

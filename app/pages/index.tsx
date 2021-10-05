@@ -4,8 +4,8 @@ import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
 import Form, { FORM_ERROR } from "app/core/components/Form"
-import getTweet from "app/queries/extractTweetID"
-import type { ExtractTweet } from "app/queries/extractTweetID"
+import getTweet from "app/queries/twitter/extractTweetID"
+import type { ExtractTweet } from "app/queries/twitter/extractTweetID"
 import LabeledTextField from "app/core/components/LabeledTextField"
 
 /*
