@@ -19,10 +19,10 @@ export const getStatus = async (id: string) => {
     >("statuses/show", { id })
     return tweet
   } catch (e) {
-    if (e.message) throw e
     if (e.errors) {
       console.error(e)
       throw e.errors[0]
     }
+    throw e
   }
 }
