@@ -22,10 +22,23 @@ model User {
   role           String   @default("USER")
 
   twitterProfile Json?
+  twitterAuth    TwitterAuth?
   arenaProfile   Json?
 
-  tokens   Token[]
-  sessions Session[]
+  tokens        Token[]
+  sessions      Session[]
+  twitterAuthId Int?
+}
+
+model TwitterAuth {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    Int      @unique
+
+  token  String
+  secret String
+  User   User   @relation(fields: [userId], references: [id])
 }
 
 model Session {
