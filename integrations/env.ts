@@ -17,13 +17,21 @@ export class EnvironmentConfiguration {
 
   constructor() {
     this._twitter = {
-      consumer_key: getEnvVar("CONSUMER_KEY"),
-      consumer_secret: getEnvVar("CONSUMER_SECRET"),
-      callback_url: `${this.baseUrl}api/auth/twitter/callback`,
+      consumer_key: getEnvVar("TWITTER_API_KEY"),
+      consumer_secret: getEnvVar("TWITTER_API_SECRET"),
+      callback_url: `http://localhost:3000/api/auth/twitter/callback`,
     }
   }
   get twitter() {
     return this._twitter
+  }
+
+  get arena() {
+    return {
+      appId: getEnvVar("ARENA_APP_ID"),
+      secret: getEnvVar("ARENA_SECRET"),
+      callback_url: new URL(this.baseUrl).origin + "/api/auth/arena/callback",
+    }
   }
 
   get isProduction() {
@@ -31,7 +39,7 @@ export class EnvironmentConfiguration {
   }
 
   get baseUrl() {
-    return this.isProduction ? "https://www.example.com/" : "http://localhost:3000/"
+    return this.isProduction ? "https://www.example.com/" : "https://b9a4-75-80-49-31.ngrok.io/"
   }
 }
 export const env = new EnvironmentConfiguration()

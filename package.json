@@ -33,6 +33,10 @@
     "@prisma/client": "3.1.1",
     "blitz": "0.40.0",
     "final-form": "4.20.4",
+    "passport-http-oauth": "0.1.3",
+    "passport-oauth": "1.0.0",
+    "passport-oauth1": "1.2.0",
+    "passport-twitter": "1.0.4",
     "react": "alpha",
     "react-dom": "alpha",
     "react-final-form": "6.5.7",
@@ -41,6 +45,8 @@
     "zod": "3.9.5"
   },
   "devDependencies": {
+    "@types/passport-oauth2": "1.4.11",
+    "@types/passport-twitter": "1.0.37",
     "@types/preview-email": "2.0.1",
     "@types/react": "17.0.27",
     "eslint": "7.32.0",
