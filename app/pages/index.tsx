@@ -30,21 +30,19 @@ const UserInfo = () => {
           <br />
           User role: <code>{currentUser.role}</code>
         </div>
+        <div>
+          <pre>
+            <code>{JSON.stringify(currentUser.twitterProfile, null, 2)}</code>
+          </pre>
+        </div>
       </>
     )
   } else {
     return (
       <>
-        <Link href={Routes.SignupPage()}>
-          <a className="button small">
-            <strong>Sign Up</strong>
-          </a>
-        </Link>
-        <Link href={Routes.LoginPage()}>
-          <a className="button small">
-            <strong>Login</strong>
-          </a>
-        </Link>
+        <a href={"/api/auth/twitter"} className="button small">
+          <strong>Log in</strong>
+        </a>
       </>
     )
   }

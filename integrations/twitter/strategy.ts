@@ -24,8 +24,9 @@ const TwitterStrategy = new Strategy(
       create: {
         email,
         name: profile.displayName,
+        twitterProfile: profile as any,
       },
-      update: { email },
+      update: { email, twitterProfile: profile as any },
     })
 
     const publicData = {

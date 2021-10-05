@@ -21,26 +21,11 @@ model User {
   hashedPassword String?
   role           String   @default("USER")
 
-  profiles Profile[]
+  twitterProfile Json?
+  arenaProfile   Json?
+
   tokens   Token[]
   sessions Session[]
-}
-
-model Profile {
-  id        Int          @id @default(autoincrement())
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @updatedAt
-  site      AuthProvider
-  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    Int          @unique
-  json      Json
-
-  @@unique([site, userId])
-}
-
-enum AuthProvider {
-  TWITTER
-  ARENA
 }
 
 model Session {
